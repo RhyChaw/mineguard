@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    height: 400px; /* Adjust as needed */
+    background-color: antiquewhite;
+  }
+  
+  .leftSide {
+    width: 50%;
+    background-image: url('../images/masked-miner.jpeg'); /* Image file path */
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(0 0, 120% 0, 60% 100%, 0% 100%);
+  }
+  
+  .rightSide {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite; /* Light background for contrast */
+    padding: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #333;
+  }
+  
+  /* Button theme with antiquewhite, light brown, and burlywood */
+  .analyzeButton {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: burlywood;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .analyzeButton:hover {
+    background-color: lightbrown;
+    color: antiquewhite;
+  }
+  
+  .tableSection {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .table {
+    margin: 0 auto;
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .table th {
+    background-color: burlywood;
+    color: white;
+  }
+  
+  .feedbackSection {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .feedbackBox {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: antiquewhite;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 100px;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .feedbackSection {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+  
+  .feedbackSection h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .feedbackSection p {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  

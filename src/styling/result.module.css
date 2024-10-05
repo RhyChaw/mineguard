@@ -1,0 +1,43 @@
+.resultsContainer {
+    background-color: blanchedalmond;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: 20px auto;
+    color: #fff; /* White text for contrast */
+    margin-bottom: 20px;
+
+  }
+  
+  .textBox {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 2px solid burlywood;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #4B3F2F; /* Dark brown for text */
+    background-color: rgba(245, 222, 179, 0.8); /* Lighter burlywood with transparency */
+    resize: none;
+  }
+  
+  .mapContainer {
+    margin-top: 30px;
+    height: 400px;
+    width: 100%;
+    max-width: 1000px;
+    border: 2px solid burlywood;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7); /* Transparent white background to ensure map content is visible */
+  }
+
+  .background {
+    background-image: url('../images/greenDisp.jpg');
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin-bottom: 0;
+  }
+  

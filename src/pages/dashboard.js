@@ -14,10 +14,12 @@ function Dashboard() {
       </Link>
       <Link to="/soil" className={styles.column3}>
         <h2 className={styles.text_above}>Soil Composition</h2>
-        <button className={styles.text_above}>View Map</button>
       </Link>
       <Link to="/waste" className={styles.column4}>
         <h2 className={styles.text_above}>Waste Segregation</h2>
+      </Link>
+      <Link to="/map" className={styles.column5}>
+        <h2 className={styles.text_above}>Map Demographics</h2>
       </Link>
     </div>
   );

@@ -6,6 +6,7 @@ import Health from './pages/Health'; // Import the Health component
 import Air from './pages/Air'; // Import the Air component
 import Soil from './pages/Soil'; // Import the Soil component
 import Waste from './pages/Waste'; // Import the Waste component
+import Map from './pages/map';
 import "./app.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/air" element={<Air />} />
         <Route path="/soil" element={<Soil />} />
         <Route path="/waste" element={<Waste />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
     </Router>
   );

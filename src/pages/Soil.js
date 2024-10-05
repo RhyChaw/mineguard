@@ -12,7 +12,7 @@ const openai = new OpenAI({
 });
 
 function Soil() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const [aiRecommendation, setAiRecommendation] = useState('');
   const [isAnalyzed, setIsAnalyzed] = useState(false);
 
@@ -31,35 +31,50 @@ function Soil() {
         const parsedData = result.data;
         const randomIndex = Math.floor(Math.random() * parsedData.length);
         const randomSoilSample = parsedData[randomIndex];
-        
-        // Checking if there's parsed_extra field and accessing its values
+  
         if (randomSoilSample.__parsed_extra) {
-          const [Nitrogen, Phosphorus, Potassium, pH, Soil_Type] = randomSoilSample.__parsed_extra;
-
-          // Assigning the parsed values to the state
-          const formattedData = { Nitrogen, Phosphorus, Potassium, pH, Soil_Type };
+          // Destructure the array in the correct order
+          const [Nitrogen, Phosphorus, Potassium, pHOrSoilType] = randomSoilSample.__parsed_extra;
+  
+          // Check if pH and Soil Type are swapped
+          let pH = pHOrSoilType;
+          let Soil_Type = '';
+          if (isNaN(Number(pH))) {
+            // If pH is not a number, it should be the Soil Type
+            Soil_Type = pH;
+            pH = '';
+          }
+  
+          // Create the object with correct mapping
+          const formattedData = {
+            Nitrogen: Nitrogen || '',
+            Phosphorus: Phosphorus || '',
+            Potassium: Potassium || '',
+            pH: pH || '',
+            Soil_Type: Soil_Type || ''
+          };
+  
           setData(formattedData);
-
           console.log('randomSoilSample:', randomSoilSample);
-          console.log('Updated data:', formattedData); // Log formatted data
+          console.log('Updated data:', formattedData);
         } else {
           console.error('Unexpected data structure:', randomSoilSample);
         }
-
+  
         setIsAnalyzed(true);
-
+  
         // AI prompt based on the soil composition
         const prompt = `
         Based on the soil composition of ${randomSoilSample.__parsed_extra[4]} with a pH of ${randomSoilSample.__parsed_extra[3]}, and Nitrogen: ${randomSoilSample.__parsed_extra[0]}, Phosphorus: ${randomSoilSample.__parsed_extra[1]}, and Potassium: ${randomSoilSample.__parsed_extra[2]}, 
         give suggestions to miners on how to restore the soil after mining has been done.
         `;
-
+  
         try {
           const response = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo', // Use a valid model
+            model: 'gpt-3.5-turbo',
             messages: [{ role: 'user', content: prompt }],
           });
-
+  
           setAiRecommendation(response.choices[0].message.content);
         } catch (error) {
           console.error('Error with OpenAI API:', error);
@@ -68,6 +83,7 @@ function Soil() {
       },
     });
   };
+  
 
   return (
     <div>

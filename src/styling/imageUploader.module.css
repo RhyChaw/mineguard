@@ -1,0 +1,77 @@
+.container {
+  background-color: burlywood;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.container h3 {
+  color: white;
+  text-transform: uppercase;
+
+}
+
+.uploadBox {
+  border: 2px dashed wheat;
+  background-color: bisque;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.uploadText {
+  color: darkbrown;
+  font-weight: bold;
+}
+
+.fileInput {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.previewContainer {
+  margin-top: 20px;
+}
+
+.imagePreview {
+  width: auto;
+  height: auto;
+  max-width: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid brown;
+  background-color: wheat;
+
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.sendButton, .editButton {
+  background-color: darkred;
+  color: #ffffff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.sendButton:hover, .editButton:hover {
+  background-color: #8B4513;
+}
+
+.uploadStatus {
+  margin-top: 20px;
+  color: darkbrown;
+  font-weight: bold;
+}

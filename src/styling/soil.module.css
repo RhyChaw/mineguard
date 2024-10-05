@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .leftSide {
+    flex: 1; /* 1/4 of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure full height */
+  }
+  
+  .soilImage {
+    width: 100%;
+    height: 100%; /* Stretch to cover full height */
+    object-fit: cover; /* Ensure image covers the container */
+  }
+  
+  .rightSide {
+    flex: 3; /* 3/4 of the screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .scanButton {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .scanButton:hover {
+    background-color: #45a049;
+  }
+  
+  .resultSection {
+    margin-top: 20px;
+  }
+  
+  .resultSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .resultSection p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+  }
+  

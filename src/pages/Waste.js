@@ -28,18 +28,7 @@ function Waste() {
     setImage(uploadedImage); 
 
     // Simulate image analysis by directly assigning waste items
-    setResults(wasteItems); 
-
-    // Simulate getting instructions from OpenAI
-    getOpenAIInstructions(wasteItems); 
-  };
-
-  // Function to simulate getting instructions from OpenAI
-  const getOpenAIInstructions = (classificationResults) => {
-    const items = classificationResults.join(", "); // Join items into a string
-    const simulatedInstructions = `Based on the following waste items: ${items}, ensure proper disposal by following local regulations and guidelines.`;
-
-    setInstructions(simulatedInstructions); // Set the simulated instructions
+    setResults(wasteItems); // Waste items passed as results
   };
 
   return (
@@ -51,8 +40,7 @@ function Waste() {
       {/* Conditional rendering of Results component */}
       {results.length > 0 && (
         <Results 
-          results={results} 
-          instructions={instructions} 
+          results={results} // Pass waste items as results prop
           image={image} // Pass the image if needed
         />
       )}

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../styling/result.module.css'; // Import the CSS module
+import styles from '../styling/result.module.css'; 
+import { OpenAI } from 'openai';
+
+const openai = new OpenAI({
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Use from .env.local
+  dangerouslyAllowBrowser: true, // Browser usage (not recommended for production)
+});
 
 const Results = ({ results }) => {
   const [aiRecommendation, setAiRecommendation] = useState('');
@@ -10,25 +16,20 @@ const Results = ({ results }) => {
       if (results.length > 0) {
         setIsLoading(true);
         const items = results.join(", "); // Join items into a string
-        const prompt = `The following have been detected as waste: ${items}. Provide environmentally friendly disposal methods for each of them.`;
+        const messages = [
+          { role: 'system', content: 'You are a waste management expert.' },
+          { role: 'user', content: `The following have been detected as waste: ${items}. Provide environmentally friendly disposal or recycling methods for each of them, with specific tips for each.` }
+        ];
 
         try {
-          const response = await fetch('https://api.openai.com/v1/completions', { // OpenAI API endpoint for completions
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer YOUR_OPENAI_API_KEY`, // Replace with your OpenAI API key
-            },
-            body: JSON.stringify({
-              model: 'gpt-3.5-turbo', // Use the desired model
-              prompt: prompt,
-              max_tokens: 150, // Adjust the token limit if needed
-              temperature: 0.7, // Set the temperature for response creativity
-            }),
+          const response = await openai.chat.completions.create({
+            model: 'gpt-3.5-turbo', // Use the desired model
+            messages: messages,
+            max_tokens: 300,
+            temperature: 0.7,
           });
 
-          const data = await response.json();
-          setAiRecommendation(data.choices[0].text.trim()); // Set the instructions received from OpenAI
+          setAiRecommendation(response.choices[0].message.content.trim()); // Set the instructions received from OpenAI
         } catch (error) {
           console.error('Error fetching OpenAI instructions:', error);
           setAiRecommendation('Unable to fetch AI recommendations at this time.');

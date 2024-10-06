@@ -42,7 +42,7 @@ function Health() {
     async function initAudio() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        
+        // eslint-disable-next-line
         recordAudio = RecordRTC(stream, {
           type: 'audio',
           bufferSize: 16384,
@@ -114,6 +114,9 @@ function Health() {
     console.log(minerDetails);
   };
 
+  console.log(handleSubmit);
+  console.log(handleInputChange);
+
   // Event handlers for session controls
   const handleStartSession = () => {
     setIsSessionActive(true);
@@ -129,6 +132,11 @@ function Health() {
     setIsStopped(true);
     setIsSessionActive(false);
     setTimeWorked(0); // Reset time
+  };
+
+  // SOS button handler
+  const handleSOS = () => {
+    alert('The nearest available help has been notified.');
   };
 
   return (
@@ -157,6 +165,14 @@ function Health() {
         <h2>Noise Level</h2>
         <canvas ref={visualizerRef} width="400" height="100" style={{ border: '1px solid #ccc' }}></canvas>
       </div>
+
+      {/* SOS Button */}
+      <button 
+          className={styles.sosButton} 
+          onClick={handleSOS} 
+        >
+          SOS
+        </button>
 
       {/* Miner data section */}
       <div className={styles.minerDataSection}>

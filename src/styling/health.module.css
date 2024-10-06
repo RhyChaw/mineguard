@@ -120,3 +120,23 @@ button:hover {
 .composition:hover .composition__photo:not(:hover) {
   transform: scale(0.95);
 }
+
+.sosButton {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 150px;
+  font-size: 32px;
+  min-height: 100px;
+  margin-top: 10px; /* Optional for spacing */
+  transition: all .2s;
+}
+
+.sosButton:hover {
+  transform: scale(1.2);
+  background-color: rgb(142, 0, 0);
+}
+

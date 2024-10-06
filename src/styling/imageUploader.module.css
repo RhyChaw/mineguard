@@ -5,6 +5,9 @@
   text-align: center;
   max-width: 400px;
   margin: 0 auto;
+  position: absolute;
+  margin-left: 100px;
+
 }
 
 .container h3 {
@@ -49,7 +52,7 @@
   background-color: wheat;
 
 }
-
+ 
 .actions {
   display: flex;
   justify-content: space-around;

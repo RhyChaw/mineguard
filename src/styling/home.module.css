@@ -15,7 +15,7 @@
     height: 70vh;
     width: 100%;
     position: relative;
-    filter: blur(2px); /* Slight blur */
+    filter: blur(1px); /* Slight blur */
   }
   
   .overlay {
@@ -31,11 +31,15 @@
   }
   
   .heroText {
-    color: white;
+    color: wheat;
     font-size: 48px;
     font-weight: bold;
     text-align: center;
     z-index: 5;
+    font-family: "Protest Strike", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
   }
   
   /* Info section */

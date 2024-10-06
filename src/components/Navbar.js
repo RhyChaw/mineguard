@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
 import styles from '../styling/navbar.module.css'; // Import the CSS module for styling
-import Logo from "../images/Logo.png"
+import Logo from "../images/Logo2.png"
 
 export default function Navbar() {
   return (
@@ -13,7 +13,7 @@ export default function Navbar() {
       </div>
       <div className={styles.login}>
         <Link to="/dashboard">
-          <button className={styles.loginBtn}>Login</button>
+          <button className={styles.loginBtn}>Dashboard</button>
         </Link>
       </div>
     </nav>

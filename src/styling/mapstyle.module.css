@@ -1,0 +1,22 @@
+/* Add background image to the container */
+.mapWrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/mapBackground.jpg'); /* Background image */
+    background-size: cover;  /* Ensure it covers the whole container */
+    background-position: center; /* Center the image */
+    padding: 20px; /* Optional padding */
+  }
+  
+  .leaflet_container {
+    width: 1000px;  /* Map takes 80% of the viewport width */
+    height: 600px; /* Map takes 80% of the viewport height */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Optional shadow for styling */
+    border-radius: 25px; /* Optional rounded corners */
+    border: solid 10px black;
+
+  }
+  

@@ -22,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: filter 0.3s ease; /* Transition for blur effect */
+  transition: all 0.3s ease; /* Transition for blur effect */
   cursor: pointer; /* Change cursor to pointer */
   position: relative; /* Set position to relative for z-index */
   padding: 0;
@@ -41,7 +41,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: filter 0.3s ease; /* Transition for blur effect */
+  transition: all 0.3s  ease; /* Transition for blur effect */
   cursor: pointer; /* Change cursor to pointer */
   position: relative; /* Set position to relative for z-index */
   padding: 0;
@@ -60,7 +60,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: filter 0.3s ease; /* Transition for blur effect */
+  transition: all 0.3s  ease; /* Transition for blur effect */
   cursor: pointer; /* Change cursor to pointer */
   position: relative; /* Set position to relative for z-index */
   padding: 0;
@@ -79,7 +79,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: filter 0.3s ease; /* Transition for blur effect */
+  transition: all 0.3s  ease; /* Transition for blur effect */
   cursor: pointer; /* Change cursor to pointer */
   position: relative; /* Set position to relative for z-index */
   padding: 0;
@@ -98,7 +98,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: filter 0.3s ease; /* Transition for blur effect */
+  transition: all 0.3s  ease; /* Transition for blur effect */
   cursor: pointer; /* Change cursor to pointer */
   position: relative; /* Set position to relative for z-index */
   padding: 0;
@@ -111,8 +111,9 @@
 .column3:hover,
 .column4:hover,
 .column5:hover {
-  filter: blur(3px); /* Apply blur effect on hover */
+  filter: blur(1px); /* Apply blur effect on hover */
   cursor: pointer !important;
+  transform: scale(1.05);
 }
 
 /* Optional styling for the button */
@@ -127,10 +128,13 @@
   transition: background-color 0.3s ease;
 }
 
-.column3 button:hover {
-  background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
-}
-
-.text_above {
+.text_above{
   z-index: 100;
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  
 }

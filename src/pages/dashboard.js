@@ -10,7 +10,6 @@ function Dashboard() {
       </Link>
       <Link to="/air" className={styles.column2}>
         <h2 className={styles.text_above}>AIR Index</h2>
-        <h2>Load analysis</h2>
       </Link>
       <Link to="/soil" className={styles.column3}>
         <h2 className={styles.text_above}>Soil Composition</h2>
@@ -24,5 +23,5 @@ function Dashboard() {
     </div>
   );
 }
-
+ 
 export default Dashboard;

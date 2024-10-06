@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import RecordRTC from 'recordrtc';
 import Navbar from '../components/Navbar';
 import styles from '../styling/health.module.css';
+import h1 from "../images/happyminer1.jpg";
+import h2 from "../images/happyminer2.jpg";
+import h3 from "../images/happyminer3.jpg";
 
 function Health() {
   const [timeWorked, setTimeWorked] = useState(0); // Timer in seconds
@@ -9,13 +12,12 @@ function Health() {
   const [isPaused, setIsPaused] = useState(false); // To track if timer is paused
   const [isStopped, setIsStopped] = useState(false); // To track if session is stopped
   const [minerDetails, setMinerDetails] = useState({
-    name: '',
-    bloodReport: '',
-    otherInfo: ''
+    name: 'Rhythm Chawla',
+    bloodReport: 'link to sample report...',
+    otherInfo: 'Miner allergies and details if any'
   });
 
-  const [noiseDuration, setNoiseDuration] = useState(0); // Timer for prolonged noise
-  const visualizerRef = useRef(null); // Ref for RecordRTC visualizer
+  const visualizerRef = useRef(null); // Ref for the canvas visualizer
   let recordAudio;
 
   // Timer effect for work time
@@ -52,10 +54,36 @@ function Health() {
         recordAudio.startRecording();
 
         // Attach visualizer
-        recordAudio.getInternalRecorder().getVisualizer(visualizerRef.current, {
-          width: 400, // Customize visualizer width
-          height: 100, // Customize visualizer height
-        });
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaStreamSource(stream);
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256; // Size of the FFT
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination); // Connect to output
+
+        const canvas = visualizerRef.current;
+        const canvasContext = canvas.getContext('2d');
+
+        const draw = () => {
+          requestAnimationFrame(draw);
+          analyser.getByteFrequencyData(dataArray);
+          canvasContext.fillStyle = 'rgba(255, 255, 255, 0.1)';
+          canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+          const barWidth = (canvas.width / bufferLength) * 2.5;
+          let barHeight;
+          let x = 0;
+
+          for (let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] / 2; // Scale down for better visualization
+            canvasContext.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
+            canvasContext.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
+            x += barWidth + 1;
+          }
+        };
+
+        draw();
       } catch (error) {
         console.error('Error accessing the microphone', error);
       }
@@ -107,6 +135,12 @@ function Health() {
     <div className={styles.main}>
       <Navbar />
 
+      <div className="composition">
+        <img src={h1} alt="Happy Miner 1" className="composition__photo composition__photo--p1" height={400} />
+        <img src={h2} alt="Happy Miner 2" className="composition__photo composition__photo--p2" height={400} />
+        <img src={h3} alt="Happy Miner 3" className="composition__photo composition__photo--p3" height={400} />
+      </div>
+
       {/* Health meter section */}
       <div className={styles.healthSection}>
         <h2>Work Timer: {Math.floor(timeWorked / 60)} minutes {timeWorked % 60} seconds</h2>
@@ -116,12 +150,6 @@ function Health() {
           <button onClick={handlePauseSession} disabled={isPaused || !isSessionActive}>Pause</button>
           <button onClick={handleStopSession}>Stop</button>
         </div>
-        <div className={styles.meter}>
-          <span
-            className={styles.progress}
-            style={{ width: `${(timeWorked / 3600) * 100}%` }}
-          ></span>
-        </div>
       </div>
 
       {/* Audio detection visualizer */}
@@ -130,44 +158,12 @@ function Health() {
         <canvas ref={visualizerRef} width="400" height="100" style={{ border: '1px solid #ccc' }}></canvas>
       </div>
 
-      {/* Miner details form */}
-      <div className={styles.formSection}>
-        <h2>Enter Miner Details</h2>
-
-        
-
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={minerDetails.name}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <label>
-            Blood Report:
-            <input
-              type="text"
-              name="bloodReport"
-              value={minerDetails.bloodReport}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <label>
-            Other Info:
-            <textarea
-              name="otherInfo"
-              value={minerDetails.otherInfo}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <button type="submit">Save Details</button>
-        </form>
+      {/* Miner data section */}
+      <div className={styles.minerDataSection}>
+        <h2>Miner Details</h2>
+        <p>Name: {minerDetails.name}</p>
+        <p>Blood Report: {minerDetails.bloodReport}</p>
+        <p>Other Info: {minerDetails.otherInfo}</p>
       </div>
     </div>
   );
